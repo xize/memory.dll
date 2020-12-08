@@ -276,6 +276,7 @@ namespace Memory
         static extern bool Process32Next([In] IntPtr hSnapshot, ref PROCESSENTRY32 lppe);
 
         // privileges
+        const long PROCESS_ACCESS_ALL = (0x000F0000L | 0x00100000L | 0xFFF);
         const int PROCESS_CREATE_THREAD = 0x0002;
         const int PROCESS_QUERY_INFORMATION = 0x0400;
         const int PROCESS_VM_OPERATION = 0x0008;
@@ -403,6 +404,7 @@ namespace Memory
             }
         }
 
+
         /// <summary>
         /// Open the PC game process with all security and access rights.
         /// </summary>
@@ -435,7 +437,7 @@ namespace Memory
                     return false;
                 }
 
-                pHandle = OpenProcess(0x1F0FFF, true, pid);
+                pHandle = OpenProcess(PROCESS_VM_OPERATION | PROCESS_VM_READ | PROCESS_VM_WRITE | PROCESS_QUERY_INFORMATION, true, pid);
 
                 try { 
                     Process.EnterDebugMode(); 
