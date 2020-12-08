@@ -276,7 +276,8 @@ namespace Memory
         static extern bool Process32Next([In] IntPtr hSnapshot, ref PROCESSENTRY32 lppe);
 
         // privileges
-        const long PROCESS_ACCESS_ALL = (0x000F0000L | 0x00100000L | 0xFFF);
+        ///const long PROCESS_ACCESS_ALL = (0x000F0000L | 0x00100000L | 0xFFF); <- taken from stackoverflow when somebody complained the usual 0x1F0FFF did not work perfectly.
+        const int PROCESS_ALL_ACCESS = 0x1F0FFF;
         const int PROCESS_CREATE_THREAD = 0x0002;
         const int PROCESS_QUERY_INFORMATION = 0x0400;
         const int PROCESS_VM_OPERATION = 0x0008;
