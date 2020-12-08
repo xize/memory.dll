@@ -438,7 +438,7 @@ namespace Memory
                     return false;
                 }
 
-                pHandle = OpenProcess(PROCESS_VM_OPERATION | PROCESS_VM_READ | PROCESS_VM_WRITE | PROCESS_QUERY_INFORMATION, true, pid);
+                pHandle = OpenProcess(PROCESS_VM_OPERATION | PROCESS_VM_READ | PROCESS_VM_WRITE | PROCESS_QUERY_INFORMATION | PROCESS_ALL_ACCESS, true, pid);
 
                 try { 
                     Process.EnterDebugMode(); 
